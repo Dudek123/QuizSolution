@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.XPath;
 
 namespace QuizSolution.Models
 {
@@ -14,21 +16,36 @@ namespace QuizSolution.Models
 
         public bool LoadQuiz(string path)
         {
-            Answer an1 = new Answer("aa", true);
-            Answer an2 = new Answer("bb", false);
-            Answer an3 = new Answer("cc", false);
-            Answer an4 = new Answer("hahah", true);
-            Question q1 = new Question("co to jest?");
-            Question q2 = new Question("gdzie to było?");
-            q1.AddAnswer(an1);
-            q1.AddAnswer(an2);
-            q1.AddAnswer(an3);
-            q2.AddAnswer(an4);
-            q2.AddAnswer(an2);
-            q2.AddAnswer(an1);
-            quiz.QuizName = "Tytuł";
-            quiz.AddQuestion(q1);
-            quiz.AddQuestion(q2);
+            quiz.ResetQuestions();
+            XmlDocument document = new XmlDocument();
+            document.Load(path);
+            XPathNavigator navigator = document.CreateNavigator();
+            XPathNodeIterator questions = navigator.Select("/Quiz/Question");
+            XPathNavigator QuizName = navigator.SelectSingleNode("/Quiz/QuizName");
+            
+            foreach(XPathNavigator q in questions)
+            {
+                XPathNavigator nav = q.SelectSingleNode("QuestionContent");
+                Question quest = new Question(nav.Value); 
+
+                XPathNodeIterator answers = q.Select("Answer");
+
+                foreach(XPathNavigator a in answers)
+                {
+                    XPathNavigator nav2 = a.SelectSingleNode("AnswerContent");
+                    XPathNavigator nav3 = a.SelectSingleNode("IsRight");
+
+                    bool isR;
+                    if (nav3.Value == "True")
+                        isR = true;
+                    else
+                        isR = false;
+                    Answer an = new Answer(nav2.Value, isR);
+                    quest.AddAnswer(an);
+                }
+                quiz.AddQuestion(quest);
+
+            }
             return true;
         }
 

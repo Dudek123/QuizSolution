@@ -44,5 +44,10 @@ namespace QuizSolution.Classes
         {
             return questions[number];
         }
+
+        public void ResetQuestions()
+        {
+            Questions.Clear();
+        }
     }
 }

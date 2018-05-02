@@ -78,7 +78,7 @@ namespace QuizSolution.Controls
         {
             answers_controls[number].IsSelected = isSel;
             answers_controls[number].AnswerText = answer;
-            answers_controls[number].Visible = true;
+            answers_controls[number].Visible = true;          
         }
 
         private void Answer_CheckBoxCheckedChange(object sender, EventArgs e)
@@ -96,15 +96,20 @@ namespace QuizSolution.Controls
 
         private void label_questionText_TextChanged(object sender, EventArgs e)
         {
+
             if(QuestionText != "")
             {
-                for (int i = 0; i < AnswersText.Count; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    AddAnswer(AnswersText[i], i, SelectedAnswers[i]);
+                    if(i < AnswersText.Count)
+                        AddAnswer(AnswersText[i], i, SelectedAnswers[i]);
+                    else
+                        answers_controls[i].Visible = false;
                 }
                 
             }
-                
+            
+
         }
     }
 }
