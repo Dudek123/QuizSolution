@@ -18,7 +18,16 @@ namespace QuizSolution.Models
         {
             quiz.ResetQuestions();
             XmlDocument document = new XmlDocument();
-            document.Load(path);
+            try
+            {
+                document.Load(path);
+            }
+            catch(Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Bad Path");
+                return false;
+            }
+            
             XPathNavigator navigator = document.CreateNavigator();
             XPathNodeIterator questions = navigator.Select("/Quiz/Question");
             XPathNavigator QuizName = navigator.SelectSingleNode("/Quiz/QuizName");
@@ -61,12 +70,44 @@ namespace QuizSolution.Models
 
         public bool SaveAnswers(int questNum, List<bool> selAns)
         {
-            Question q = GetQuestion(questNum);
-            for (int i = 0; i < selAns.Count; i++)
+            try
             {
-                q.Answers[i].SetSelected(selAns[i]);
+                Question q = GetQuestion(questNum);
+
+                for (int i = 0; i < selAns.Count; i++)
+                {
+                    q.Answers[i].SetSelected(selAns[i]);
+                }
+                return true;
             }
-            return true;
+            catch(Exception)
+            {
+                return false;
+            }
+            
+            
+        }
+
+        public int CheckQuestionPoints(int number)
+        {
+            int ptsForQuestion = 0;
+            Question q = quiz.GetQuestion(number);
+            
+            List<Answer> ans = q.Answers;
+            foreach(Answer a in ans)
+            {
+                if (a.IsRight == true && a.GetState() == true)
+                    ptsForQuestion = 1;
+                if (a.IsRight == false && a.GetState() == false) { }
+                if ((a.IsRight == true && a.GetState() == false) || (a.IsRight == false && a.GetState() == true))
+                {
+                    ptsForQuestion = 0;
+                    break;
+                }
+ 
+            }
+                        
+            return ptsForQuestion;
         }
 
        

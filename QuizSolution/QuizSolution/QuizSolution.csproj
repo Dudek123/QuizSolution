@@ -61,6 +61,12 @@
     <Compile Include="Controls\Control_Question.Designer.cs">
       <DependentUpon>Control_Question.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Control_QuestionResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Control_QuestionResult.Designer.cs">
+      <DependentUpon>Control_QuestionResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\QS_Model.cs" />
     <Compile Include="Presenters\QS_Presenter.cs" />
     <Compile Include="Views\QS_IView.cs" />
@@ -78,6 +84,9 @@
     <EmbeddedResource Include="Controls\Control_Question.resx">
       <DependentUpon>Control_Question.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Control_QuestionResult.resx">
+      <DependentUpon>Control_QuestionResult.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -86,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\QS_View.resx">
       <DependentUpon>QS_View.cs</DependentUpon>
@@ -102,6 +112,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\correct.png" />
+    <Resource Include="Images\wrong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\correct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wrong.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

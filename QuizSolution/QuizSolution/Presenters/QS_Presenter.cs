@@ -20,6 +20,12 @@ namespace QuizSolution.Presenters
             view.GetQuizName += getQuizName;
             view.GetQuestion += getQuestion;
             view.SaveAnswers += saveAnswers;
+            view.CheckQuestionPoints += checkQuestionPoints;
+        }
+
+        private int checkQuestionPoints(int number)
+        {
+            return model.CheckQuestionPoints(number);
         }
 
         private bool saveAnswers(int arg, List<bool> selAns)

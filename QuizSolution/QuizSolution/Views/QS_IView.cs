@@ -19,6 +19,7 @@ namespace QuizSolution.Views
         event Func<int, Classes.Question> GetQuestion;
         event Func<string, bool> LoadQuiz;
         event Func<string> GetQuizName;
+        event Func<int, int> CheckQuestionPoints;
         
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuizSolution.Classes;
 using QuizSolution.Views;
+using QuizSolution.Controls;
 
 namespace QuizSolution
 {
@@ -22,6 +23,7 @@ namespace QuizSolution
         public event Func<int, Question> GetQuestion;
         public event Func<string, bool> LoadQuiz;
         public event Func<string> GetQuizName;
+        public event Func<int, int> CheckQuestionPoints;
 
         public QS_View()
         {
@@ -173,7 +175,97 @@ namespace QuizSolution
 
         private void button_checkQuiz_Click(object sender, EventArgs e)
         {
+            if (SaveAnswers(question_number, SelectedAnswers))
+            {
 
+                control_Question_1.Visible = false;
+
+                Panel pl = new Panel();
+                pl.Location = new Point(12, 100);
+                pl.Size = new Size(this.Size.Width - 40, 300);
+                pl.AutoScroll = true;
+                pl.BackColor = Color.Aquamarine;
+                
+
+                List<Question> questions = new List<Question>();
+
+                for(int i = 0; ; i++)
+                {
+                    try
+                    {
+                        questions.Add(GetQuestion(i));
+                    }
+                    catch(Exception)
+                    {
+                        break;
+                    }
+                }
+
+                
+                Control_QuestionResult[] result_controls = new Control_QuestionResult[questions.Count];
+
+                for(int i = 0; i < questions.Count; i++)
+                {
+                    Control_QuestionResult qr = new Control_QuestionResult();
+                    if (i == 0)
+                        qr.Location = new Point(10, 10);
+                    else
+                        qr.Location = new Point(10, result_controls[i - 1].Location.Y + result_controls[i - 1].Height + 10);
+
+                    List<Answer> ans = questions[i].Answers;
+                    List<string> ansStr = new List<string>();
+                    foreach(Answer a in ans)
+                    {
+                        ansStr.Add(a.AnswerText);
+                    }
+                    List<int> howSel = new List<int>();
+                    foreach(Answer xd in ans)
+                    {
+                        if (xd.GetState() && xd.IsRight)
+                            howSel.Add(0);
+                        if (xd.GetState() && !xd.IsRight)
+                            howSel.Add(1);
+                        if((!xd.GetState() && xd.IsRight) || (!xd.GetState() && !xd.IsRight))
+                            howSel.Add(3);
+                        
+                       
+                    }
+
+                    qr.HowSelected = howSel;
+                    qr.QuestionPoints = CheckQuestionPoints(i);
+                    qr.AnswersText = ansStr;
+                    qr.QuestionText = questions[i].QuestionString;
+                    Console.WriteLine(i.ToString());       
+                    result_controls[i] = qr;
+                    pl.Controls.Add(qr);
+                    
+                }
+                this.Controls.Add(pl);
+                //pl.Controls.Add(result_controls[1]);
+                Console.WriteLine(result_controls.Length);
+                /*
+                foreach(Control_QuestionResult cqr in result_controls)
+                {
+                    pl.Controls.Add(cqr);
+                }*/
+
+                //pl.Controls.Add(result_controls[0]);
+                //pl.Controls.Add(result_controls[1]);
+
+                
+                /*
+                Control_QuestionResult qr = new Control_QuestionResult();
+                this.Controls.Add(qr);
+                qr.Location = new Point(12, 100);*/
+
+
+
+            }
+            else
+                MessageBox.Show("No loaded quiz");
+           
         }
+
+       
     }
 }
