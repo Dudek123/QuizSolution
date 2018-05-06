@@ -35,9 +35,11 @@ namespace QuizSolution.Controls
             // label_questionText
             // 
             this.label_questionText.AutoSize = true;
-            this.label_questionText.Location = new System.Drawing.Point(85, 10);
+            this.label_questionText.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_questionText.ForeColor = System.Drawing.Color.White;
+            this.label_questionText.Location = new System.Drawing.Point(13, 11);
             this.label_questionText.Name = "label_questionText";
-            this.label_questionText.Size = new System.Drawing.Size(73, 13);
+            this.label_questionText.Size = new System.Drawing.Size(114, 22);
             this.label_questionText.TabIndex = 0;
             this.label_questionText.Text = "Question Text";
             this.label_questionText.TextChanged += new System.EventHandler(this.label_questionText_TextChanged);
@@ -46,9 +48,10 @@ namespace QuizSolution.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gray;
             this.Controls.Add(this.label_questionText);
             this.Name = "Control_Question";
-            this.Size = new System.Drawing.Size(262, 297);
+            this.Size = new System.Drawing.Size(360, 330);
             this.ResumeLayout(false);
             this.PerformLayout();
 

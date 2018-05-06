@@ -24,13 +24,14 @@ namespace QuizSolution.Models
             }
             catch(Exception)
             {
-                System.Windows.Forms.MessageBox.Show("Bad Path");
+                System.Windows.Forms.MessageBox.Show("Brak wybranego quizu");
                 return false;
             }
             
             XPathNavigator navigator = document.CreateNavigator();
             XPathNodeIterator questions = navigator.Select("/Quiz/Question");
             XPathNavigator QuizName = navigator.SelectSingleNode("/Quiz/QuizName");
+            quiz.QuizName = QuizName.Value;
             
             foreach(XPathNavigator q in questions)
             {

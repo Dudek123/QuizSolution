@@ -21,8 +21,8 @@ namespace QuizSolution.Controls
                 Control_Answer newAnswer = new Control_Answer();
                 this.Controls.Add(newAnswer);
                 newAnswer.CheckBoxCheckedChange += new EventHandler(Answer_CheckBoxCheckedChange);
-                newAnswer.Top = 70 + i * 30;
-                newAnswer.Left = 30;
+                newAnswer.Top = 45 + i * 35;
+                newAnswer.Left = 15;
                 newAnswer.Visible = false;
                 answers_controls[i] = newAnswer;
                 SelectedAnswers.Add(false);
@@ -68,6 +68,10 @@ namespace QuizSolution.Controls
             set
             {
                 selectedAnswers = value;
+                for(int i = 0; i < value.Count; i++)
+                {
+                    answers_controls[i].IsSelected = value[i];
+                }
             }
         }
 

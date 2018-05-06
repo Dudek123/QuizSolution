@@ -78,9 +78,11 @@ namespace QuizSolution.Controls
 
 
                     Label lb = new Label();
-                    this.Controls.Add(lb);
                     lb.Location = new Point(50, pb.Location.Y + 6);
                     lb.Text = AnswersText[i + 2];
+                    lb.Font = new Font("Palatino Linotype", 9);
+                    lb.ForeColor = Color.White;
+                    this.Controls.Add(lb);
 
                     this.Size = new Size(this.Size.Width, this.Size.Height + 40);
                 }

@@ -50,5 +50,13 @@ namespace QuizSolution.Controls
                 this.CheckBoxCheckedChange(this, e);
             }
         }
+
+        private void Control_Answer_Click(object sender, EventArgs e)
+        {
+            if (checkBox_Answer.Checked == true)
+                checkBox_Answer.Checked = false;
+            else
+                checkBox_Answer.Checked = true;
+        }
     }
 }

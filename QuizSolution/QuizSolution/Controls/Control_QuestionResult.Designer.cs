@@ -41,15 +41,18 @@
             // label_questionText
             // 
             this.label_questionText.AutoSize = true;
-            this.label_questionText.Location = new System.Drawing.Point(107, 12);
+            this.label_questionText.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_questionText.ForeColor = System.Drawing.Color.White;
+            this.label_questionText.Location = new System.Drawing.Point(3, 4);
             this.label_questionText.Name = "label_questionText";
-            this.label_questionText.Size = new System.Drawing.Size(73, 13);
+            this.label_questionText.Size = new System.Drawing.Size(114, 22);
             this.label_questionText.TabIndex = 0;
             this.label_questionText.Text = "Question Text";
             this.label_questionText.TextChanged += new System.EventHandler(this.label_questionText_TextChanged);
             // 
             // pictureBox_1
             // 
+            this.pictureBox_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox_1.Location = new System.Drawing.Point(16, 32);
             this.pictureBox_1.Name = "pictureBox_1";
             this.pictureBox_1.Size = new System.Drawing.Size(25, 25);
@@ -59,18 +62,22 @@
             // label_answer1
             // 
             this.label_answer1.AutoSize = true;
-            this.label_answer1.Location = new System.Drawing.Point(50, 38);
+            this.label_answer1.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_answer1.ForeColor = System.Drawing.Color.White;
+            this.label_answer1.Location = new System.Drawing.Point(50, 37);
             this.label_answer1.Name = "label_answer1";
-            this.label_answer1.Size = new System.Drawing.Size(48, 13);
+            this.label_answer1.Size = new System.Drawing.Size(57, 17);
             this.label_answer1.TabIndex = 2;
             this.label_answer1.Text = "Answer1";
             // 
             // label_answer2
             // 
             this.label_answer2.AutoSize = true;
-            this.label_answer2.Location = new System.Drawing.Point(50, 78);
+            this.label_answer2.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_answer2.ForeColor = System.Drawing.Color.White;
+            this.label_answer2.Location = new System.Drawing.Point(50, 77);
             this.label_answer2.Name = "label_answer2";
-            this.label_answer2.Size = new System.Drawing.Size(48, 13);
+            this.label_answer2.Size = new System.Drawing.Size(57, 17);
             this.label_answer2.TabIndex = 4;
             this.label_answer2.Text = "Answer2";
             // 
@@ -85,10 +92,11 @@
             // label_Points
             // 
             this.label_Points.AutoSize = true;
-            this.label_Points.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Points.Location = new System.Drawing.Point(226, 56);
+            this.label_Points.Font = new System.Drawing.Font("Palatino Linotype", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_Points.ForeColor = System.Drawing.Color.White;
+            this.label_Points.Location = new System.Drawing.Point(259, 13);
             this.label_Points.Name = "label_Points";
-            this.label_Points.Size = new System.Drawing.Size(25, 25);
+            this.label_Points.Size = new System.Drawing.Size(38, 47);
             this.label_Points.TabIndex = 5;
             this.label_Points.Text = "0";
             // 
@@ -96,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.Controls.Add(this.label_Points);
             this.Controls.Add(this.label_answer2);
             this.Controls.Add(this.pictureBox_2);
@@ -104,7 +112,7 @@
             this.Controls.Add(this.pictureBox_1);
             this.Controls.Add(this.label_questionText);
             this.Name = "Control_QuestionResult";
-            this.Size = new System.Drawing.Size(297, 120);
+            this.Size = new System.Drawing.Size(320, 120);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_2)).EndInit();
             this.ResumeLayout(false);
