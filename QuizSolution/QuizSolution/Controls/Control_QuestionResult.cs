@@ -12,11 +12,19 @@ namespace QuizSolution.Controls
 {
     public partial class Control_QuestionResult : UserControl
     {
+        #region CONSTRUCTOR
         public Control_QuestionResult()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region PRIVATE FIELDS
+        private List<string> answersText = new List<string>();
+        private List<int> howSelected = new List<int>();
+        #endregion
+
+        #region PROPERTIES
         public string QuestionText
         {
             set
@@ -32,7 +40,7 @@ namespace QuizSolution.Controls
                 label_Points.Text = value.ToString();
             }
         }
-        private List<string> answersText = new List<string>();
+        
         public List<string> AnswersText
         {
             get
@@ -44,7 +52,7 @@ namespace QuizSolution.Controls
                 answersText = value;
             }
         }
-        private List<int> howSelected = new List<int>();
+        
         public List<int> HowSelected
         {
             get
@@ -56,27 +64,26 @@ namespace QuizSolution.Controls
                 howSelected = value;
             }
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void label_questionText_TextChanged(object sender, EventArgs e)
         {
-            foreach(int a in HowSelected)
-            {
-                Console.WriteLine(a.ToString());
-            }
             if(AnswersText.Count > 2)
             {
                 for(int i = 0; i < AnswersText.Count - 2; i++)
                 {
+                    //PictureBox with result
                     PictureBox pb = new PictureBox();
-                    this.Controls.Add(pb);
                     pb.Location = new Point(16, 112 + i * 40);
                     pb.Size = new Size(25, 25);
                     if (HowSelected[i + 2] == 0)
                         pb.Image = Properties.Resources.correct;
                     if (HowSelected[i + 2] == 1)
                         pb.Image = Properties.Resources.wrong;
+                    this.Controls.Add(pb);
 
-
+                    //Label with question text
                     Label lb = new Label();
                     lb.Location = new Point(50, pb.Location.Y + 6);
                     lb.Text = AnswersText[i + 2];
@@ -96,14 +103,10 @@ namespace QuizSolution.Controls
                 if (HowSelected[1] == 1)
                     pictureBox_2.Image = Properties.Resources.wrong;
 
-                //pictureBox_1.Image = Image.FromFile(@"C:\Users\Bożena\Source\Repos\QuizSolution\QuizSolution\QuizSolution\unchecked.png");
-                //pictureBox_2.Image = Image.FromFile(@"C:\Users\Bożena\Source\Repos\QuizSolution\QuizSolution\QuizSolution\unchecked.png");
-
                 label_answer1.Text = AnswersText[0];
                 label_answer2.Text = AnswersText[1];
-
-
             }
         }
+        #endregion
     }
 }

@@ -9,9 +9,12 @@ namespace QuizSolution.Presenters
 {
     public class QS_Presenter
     {
+        #region PRIVATE FIELDS
         Models.QS_Model model;
         Views.QS_IView view;
+        #endregion
 
+        #region CONSTRUCTOR
         public QS_Presenter(Models.QS_Model model, Views.QS_IView view)
         {
             this.model = model;
@@ -22,7 +25,9 @@ namespace QuizSolution.Presenters
             view.SaveAnswers += saveAnswers;
             view.CheckQuestionPoints += checkQuestionPoints;
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private int checkQuestionPoints(int number)
         {
             return model.CheckQuestionPoints(number);
@@ -47,5 +52,6 @@ namespace QuizSolution.Presenters
         {
             return model.LoadQuiz(arg);
         }
+        #endregion
     }
 }

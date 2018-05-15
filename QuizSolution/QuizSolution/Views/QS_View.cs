@@ -15,28 +15,34 @@ namespace QuizSolution
 {
     public partial class QS_View : Form, QS_IView
     {
+        #region PRIVATE FIELDS
         private int question_number;
-
         private List<string> answers = new List<string>();
+        private List<bool> selectedAnswers = new List<bool>();
+        #endregion
 
+        #region INTERFACE EVENTS
         public event Func<int, List<bool>, bool> SaveAnswers;
         public event Func<int, Question> GetQuestion;
         public event Func<string, bool> LoadQuiz;
         public event Func<string> GetQuizName;
         public event Func<int, int> CheckQuestionPoints;
+        #endregion
 
+        #region CONSTRUCTOR
         public QS_View()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region INTERFACE PROPERTIES
         public List<string> Answers
         {
             get
             {
                 return answers;
             }
-
             set
             {
                 answers = value;
@@ -50,7 +56,6 @@ namespace QuizSolution
             {
                 return Question;
             }
-
             set
             {
                 control_Question_1.QuestionText = value;
@@ -67,7 +72,6 @@ namespace QuizSolution
             {
                 label_quizName.Text = value;
             }
-            
         }
 
         public string QuizPath
@@ -76,28 +80,26 @@ namespace QuizSolution
             {
                 return textBox_quizPath.Text.ToString();
             }
-
             set
             {
                 textBox_quizPath.Text = value;
             }
         }
-        private List<bool> selectedAnswers = new List<bool>();
+        
         public List<bool> SelectedAnswers
         {
             get
             {
                 return control_Question_1.SelectedAnswers;
             }
-
             set
             {
                 control_Question_1.SelectedAnswers = value;
             }
         }
+        #endregion
 
-       
-
+        #region PRIVATE METHODS
         private void button_chooseQuiz_Click(object sender, EventArgs e)
         {
             openFileDialog_loadQuiz.Title = "Wybierz quiz";
@@ -144,10 +146,10 @@ namespace QuizSolution
                 return false;
             }
             
-            
             List<Answer> ans = q.Answers;
             List<string> ansStrings = new List<string>();
             List<bool> ansBools = new List<bool>();
+
             foreach(Answer a in ans)
             {
                 ansStrings.Add(a.AnswerText);
@@ -163,7 +165,6 @@ namespace QuizSolution
 
         private void button_nextQuestion_Click(object sender, EventArgs e)
         {
-            
             List<bool> temp = SelectedAnswers;
             if (LoadQuestion(question_number + 1))
             {
@@ -185,7 +186,6 @@ namespace QuizSolution
 
         private void button_prevQuestion_Click(object sender, EventArgs e)
         {
-         
             List<bool> temp = SelectedAnswers;
             if (LoadQuestion(question_number - 1))
             {
@@ -203,7 +203,6 @@ namespace QuizSolution
                     komunikat = "Brak pytania";
                 MessageBox.Show(komunikat);
             }
-
         }
 
         private void DeletePanel()
@@ -229,6 +228,7 @@ namespace QuizSolution
 
                 DeletePanel();
 
+                //Panel with questions
                 Panel pl = new Panel();
                 pl.Location = control_Question_1.Location;
                 pl.Size = control_Question_1.Size;
@@ -236,6 +236,7 @@ namespace QuizSolution
                 pl.Name = "Panel_QS";
                 pl.BackColor = Color.Gray;
 
+                //Button Back to quiz
                 Button bt = new Button();
                 bt.Location = new Point(221, 10);
                 bt.FlatStyle = FlatStyle.Flat;
@@ -248,7 +249,7 @@ namespace QuizSolution
                 bt.Cursor = Cursors.Hand;
                 pl.Controls.Add(bt);
 
-
+                //Label wynik quizu
                 Label lb = new Label();
                 lb.Location = new Point(10, 8);
                 lb.Text = "WYNIK QUIZU: ";
@@ -271,7 +272,6 @@ namespace QuizSolution
                     }
                 }
 
-                
                 Control_QuestionResult[] result_controls = new Control_QuestionResult[questions.Count];
 
                 for(int i = 0; i < questions.Count; i++)
@@ -306,30 +306,11 @@ namespace QuizSolution
                     qr.QuestionText = questions[i].QuestionString;
                     Console.WriteLine(i.ToString());       
                     result_controls[i] = qr;
-                    pl.Controls.Add(qr);
-                    
+                    pl.Controls.Add(qr);    
                 }
                 lb.Text += result.ToString();
-                this.Controls.Add(pl);
-                //pl.Controls.Add(result_controls[1]);
-                Console.WriteLine(result_controls.Length);
-                /*
-                foreach(Control_QuestionResult cqr in result_controls)
-                {
-                    pl.Controls.Add(cqr);
-                }*/
-
-                //pl.Controls.Add(result_controls[0]);
-                //pl.Controls.Add(result_controls[1]);
-
-                
-                /*
-                Control_QuestionResult qr = new Control_QuestionResult();
-                this.Controls.Add(qr);
-                qr.Location = new Point(12, 100);*/
-
-
-
+                this.Controls.Add(pl); 
+              
             }
             else
                 MessageBox.Show("No loaded quiz");
@@ -343,9 +324,7 @@ namespace QuizSolution
             button_prevQuestion.Enabled = true;
 
             DeletePanel();
-           
         }
-
-        
+        #endregion
     }
 }

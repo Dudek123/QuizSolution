@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace QuizSolution.Controls
 {
     public partial class Control_Question : UserControl
-    { 
+    {
+        #region CONSTRUCTOR
         public Control_Question()
         {
             InitializeComponent();
@@ -28,6 +29,15 @@ namespace QuizSolution.Controls
                 SelectedAnswers.Add(false);
             }
         }
+        #endregion
+
+        #region PRIVATE FIELDS
+        private List<string> answersText = new List<string>();
+        private List<bool> selectedAnswers = new List<bool>();
+        private Control_Answer[] answers_controls = new Control_Answer[8];
+        #endregion
+
+        #region QUESTION PROPERTIES
         public string QuestionText
         {
             get
@@ -41,9 +51,6 @@ namespace QuizSolution.Controls
 
         }
 
-        private List<string> answersText = new List<string>();
-        
-
         public List<string> AnswersText
         {
             get
@@ -55,9 +62,6 @@ namespace QuizSolution.Controls
                 answersText = value;
             }
         }
-
-
-        private List<bool> selectedAnswers = new List<bool>();
 
         public List<bool> SelectedAnswers
         {
@@ -74,11 +78,10 @@ namespace QuizSolution.Controls
                 }
             }
         }
+        #endregion
 
-
-        private Control_Answer[] answers_controls = new Control_Answer[8];
-
-        public void AddAnswer(string answer, int number, bool isSel)
+        #region PRIVATE METHODS
+        private void AddAnswer(string answer, int number, bool isSel)
         {
             answers_controls[number].IsSelected = isSel;
             answers_controls[number].AnswerText = answer;
@@ -100,7 +103,6 @@ namespace QuizSolution.Controls
 
         private void label_questionText_TextChanged(object sender, EventArgs e)
         {
-
             if(QuestionText != "")
             {
                 for (int i = 0; i < 8; i++)
@@ -110,10 +112,8 @@ namespace QuizSolution.Controls
                     else
                         answers_controls[i].Visible = false;
                 }
-                
             }
-            
-
         }
+        #endregion
     }
 }

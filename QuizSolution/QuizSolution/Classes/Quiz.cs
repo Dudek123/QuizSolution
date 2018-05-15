@@ -8,7 +8,7 @@ namespace QuizSolution.Classes
 {
     public class Quiz
     {
-        private List<Question> questions = new List<Question>();
+        #region PROPERTIES
         public List<Question> Questions
         {
             get
@@ -22,14 +22,21 @@ namespace QuizSolution.Classes
         }
 
         public string QuizName { get; set; }
-        
+        #endregion
 
+        #region PRIVATE FIELDS
+        private List<Question> questions = new List<Question>();
+        #endregion
+
+        #region CONSTRUCTORS
         public Quiz(string arg)
         {
             QuizName = arg;
         }
         public Quiz() { }
+        #endregion
 
+        #region PUBLIC METHODS
         public void AddQuestion(Question question)
         {
             questions.Add(question);
@@ -49,5 +56,6 @@ namespace QuizSolution.Classes
         {
             Questions.Clear();
         }
+        #endregion
     }
 }

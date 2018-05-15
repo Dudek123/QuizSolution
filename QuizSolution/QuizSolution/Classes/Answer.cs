@@ -8,17 +8,26 @@ namespace QuizSolution.Classes
 {
     public class Answer
     {
+        #region PROPERTIES
         public string AnswerText { get; set; }
         public bool IsRight { get; set; }
-        bool isSelected = false;
+        #endregion
 
+        #region PRIVATE FIELDS
+        bool isSelected = false;
+        #endregion
+
+        #region CONSTRUCTORS
         public Answer(string ans, bool isRgt)
         {
             AnswerText = ans;
             IsRight = isRgt;
         }
-        public Answer() { }
 
+        public Answer() { }
+        #endregion
+
+        #region PUBLIC METHODS
         public void SetSelected(bool sel)
         {
             isSelected = sel;
@@ -28,6 +37,6 @@ namespace QuizSolution.Classes
         {
             return isSelected;
         }
-
+        #endregion
     }
 }

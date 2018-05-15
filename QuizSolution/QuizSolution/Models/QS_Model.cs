@@ -11,9 +11,15 @@ namespace QuizSolution.Models
 {
     public class QS_Model
     {
+        #region PRIVATE FIELDS
         Quiz quiz = new Quiz();
-        public QS_Model() { }
+        #endregion
 
+        #region CONSTRUCTOR
+        public QS_Model() { }
+        #endregion
+
+        #region PUBLIC METHODS
         public bool LoadQuiz(string path)
         {
             quiz.ResetQuestions();
@@ -54,7 +60,6 @@ namespace QuizSolution.Models
                     quest.AddAnswer(an);
                 }
                 quiz.AddQuestion(quest);
-
             }
             return true;
         }
@@ -84,9 +89,7 @@ namespace QuizSolution.Models
             catch(Exception)
             {
                 return false;
-            }
-            
-            
+            }          
         }
 
         public int CheckQuestionPoints(int number)
@@ -105,12 +108,9 @@ namespace QuizSolution.Models
                     ptsForQuestion = 0;
                     break;
                 }
- 
-            }
-                        
+            }           
             return ptsForQuestion;
         }
-
-       
+        #endregion
     }
 }
